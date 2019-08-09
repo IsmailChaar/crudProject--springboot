@@ -23,7 +23,7 @@ import ma.henceforth.services.ProductService;
 @CrossOrigin(origins = "http://localhost:4200")
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping({"/products","/edit-product"})
 
 
 public class ProductController {
@@ -87,66 +87,3 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 }
-
-/* @RestController
-
-public class ProductController {
-
-
-    @Autowired
-    private ProductRepository repository;
-
-
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public List<Product> getAllProducts() {
-    	System.out.println(repository.findAll().toString());
-        return repository.findAll();
-    }
-
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<Product> getProductById(@PathVariable("id") String id) {
-        return repository.findById(new ObjectId(id));
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateProductById(@PathVariable("id") ObjectId id, @Valid @RequestBody Product product) {
-        //product.setProductId(new ObjectId());
-        repository.save(product);
-    }
-
-    @RequestMapping(value = "/products", method = RequestMethod.POST)
-    public Product addNewProduct(@Valid @RequestBody Product product) {
-    	product.setProductId(ObjectId.get());
-    	System.out.println(product.toString());
-        repository.save(product);
-        return product;
-    }
-
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
-
-    public void deleteProductByID(@PathVariable("id") String id) {
-    	 System.out.println("delete " + id);
-    	 repository.deleteById(new ObjectId(id));
-    }
-    
-    
-    
-    @GetMapping("/add")
-    public Product addProduct() {
-    	Product product = new Product("blabla", "ategory", 1234, new Date());
-    	
-    	repository.save(product);
-    	return product;
-    }
-    
-    @GetMapping("/delete")
-    public void delete() {
-    	String id = "5d3f0b0ef8b8e410908c2ef3";
-    	
-    	repository.deleteById(new ObjectId(id));
-    }
-    
-    
-
-}*/
